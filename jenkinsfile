@@ -6,29 +6,32 @@ pipeline {
                 echo 'Hello World'
             }
             
+        
+            
             post { 
                 always { 
         script { 
                  def server = Artifactory.server 'JFROG1'
-                 def uploadSpec = """{
-                    "files": [{
-                       "pattern": "/tmp/winstone173134459981961080.jar",
-                       "target": "default-docker-virtual/"
-                    }]
-                 }"""
+                 def downSpec = """{
+                        "files": [{
+                            "pattern": "default-docker-local/com/bnc/app-devops-jenkins-1.33.2-SNAPSHOT.jar",
+                            "target": "/tmp/"
+                        }]
+                    }"""
 
-              def buildInfo = server.upload(uploadSpec) 
-              server.publishBuildInfo buildInfo   
-        }}
-       }
-            
+              def buildInfo = server.download(downSpec)
+                    server.publishBuildInfo buildInfo
+                }
+            }
         }
-        
+    
+
+
         stage('Stage2') {
             steps {
             echo "stage2"
             }
         }
     }
-    
+
 }
