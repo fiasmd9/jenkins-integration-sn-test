@@ -14,7 +14,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building..."
-                sh '/usr/local/bin/mvn clean install -DskipTests=true'
+                sh 'mvn clean install -DskipTests=true'
             }
         }
         stage("SoftwareQuality") {
@@ -26,7 +26,7 @@ pipeline {
         stage("Test") {
             steps {
             	echo "Testing..."
-                sh "/usr/local/bin/mvn test -Dpublish"
+                sh "mvn test -Dpublish"
                 junit "**/target/surefire-reports/*.xml"
             }
         }
