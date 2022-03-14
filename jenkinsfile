@@ -52,6 +52,12 @@ pipeline {
                     {"name": "demo5.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "demo5"}]}""")
             }
         }
+	 stage("Change") {
+            steps {
+            	echo "Change..."
+                snDevOpsChange()
+            }
+        }
     }
 }
 def sonarTest() {
