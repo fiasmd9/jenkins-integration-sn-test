@@ -20,7 +20,7 @@ pipeline {
         stage("SoftwareQuality") {
             steps {
             	echo "Software Quality..."
-                sonarTest()
+                //sonarTest()
             }
         }
         stage("Test") {
